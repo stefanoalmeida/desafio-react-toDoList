@@ -1,0 +1,68 @@
+.toDo {
+  padding: 1rem;
+
+  background-color: var(--gray-500);
+  border: 1px solid var(--gray-400);
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+}
+
+.toDo + .toDo {
+  margin-top: .75rem;
+}
+
+.contentTask {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+
+/*
+.contentTask input + label::before{
+  box-sizing: border-box;
+  content: '';
+  display: block;
+  width: 1.091rem;
+  height: 1.091rem;
+  border-radius: .7rem;
+  border: 2px solid var(--blue);
+}
+
+.contentTask input:checked + label::before{
+  background-color: var(--purple);
+  border-color: var(--purple);
+  background-repeat: no-repeat;
+  transition: .1s ease-in-out background-color;
+  background-position: center;
+  background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 10 10'%3E%3Cg class='nc-icon-wrapper' stroke-width='1' fill='%23555555'%3E%3Cpath fill='none' stroke='%23FFFFFF' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10' data-cap='butt' d='M2.83 4.72l1.58 1.58 2.83-2.83'/%3E%3C/g%3E%3C/svg%3E");
+}
+*/
+
+.contentTask p {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.4;
+
+  color: var(--gray-100);
+}
+
+.toDo button {
+  background-color: transparent;
+  border: none;
+  
+  color: var(--gray-300);
+
+  transition: background-color .2s;
+  cursor: pointer;
+}
+
+.toDo button:hover {
+  background-color: var(--gray-400);
+  border-radius: 4px;
+
+  color: var(--danger);
+}

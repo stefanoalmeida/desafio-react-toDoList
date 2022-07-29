@@ -1,68 +1,124 @@
-.toDo {
-  padding: 1rem;
+.container {
+  max-width: 90rem;
+  max-height: 64rem;
+
+  margin-inline: auto;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  gap: .5rem;
+
+  margin-top: calc(0px - 1.6875rem);
+}
+
+.form input {
+  width: 39.875rem;
+  height: 3.375rem;
 
   background-color: var(--gray-500);
-  border: 1px solid var(--gray-400);
+  border: 1px solid var(--gray-700);
   border-radius: 8px;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: .75rem;
-}
+  padding: 1rem;
 
-.toDo + .toDo {
-  margin-top: .75rem;
-}
-
-.contentTask {
-  display: flex;
-  align-items: center;
-  gap: .75rem;
-}
-
-/*
-.contentTask input + label::before{
-  box-sizing: border-box;
-  content: '';
-  display: block;
-  width: 1.091rem;
-  height: 1.091rem;
-  border-radius: .7rem;
-  border: 2px solid var(--blue);
-}
-
-.contentTask input:checked + label::before{
-  background-color: var(--purple);
-  border-color: var(--purple);
-  background-repeat: no-repeat;
-  transition: .1s ease-in-out background-color;
-  background-position: center;
-  background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 10 10'%3E%3Cg class='nc-icon-wrapper' stroke-width='1' fill='%23555555'%3E%3Cpath fill='none' stroke='%23FFFFFF' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10' data-cap='butt' d='M2.83 4.72l1.58 1.58 2.83-2.83'/%3E%3C/g%3E%3C/svg%3E");
-}
-*/
-
-.contentTask p {
-  font-size: 0.875rem;
-  font-weight: 400;
+  color: var(--gray-300);
   line-height: 1.4;
+  font-weight: 400;
+}
+
+.form input:focus {
+  border: 1px solid var(--purple-dark);
+}
+
+.form button {
+  width: 5.625rem;
+  height: 3.25rem;
+
+  background-color: var(--blue-dark);
+  border-radius: 8px;
+  border: none;
 
   color: var(--gray-100);
-}
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.4;
 
-.toDo button {
-  background-color: transparent;
-  border: none;
-  
-  color: var(--gray-300);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+
+  cursor: pointer;
 
   transition: background-color .2s;
-  cursor: pointer;
 }
 
-.toDo button:hover {
-  background-color: var(--gray-400);
-  border-radius: 4px;
+.form button:hover {
+  background-color: var(--blue);
+}
 
-  color: var(--danger);
+.toDoList {
+  width: 46rem;
+  height: 17.9375rem;
+
+  margin-top: 4rem;
+
+  background-color: transparent;
+}
+
+.headerList {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 2rem;
+}
+
+.headerList > strong {
+  color: var(--blue);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.headerList strong:nth-child(2){
+  color: var(--purple);
+}
+
+.headerList span {
+  width: 25px;
+  height: 19px;
+
+  padding: 2px 8px;
+
+  background-color: var(--gray-400);
+  border-radius: 999px;
+
+  color: var(--gray-200);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 1.5rem;
+  padding: 4rem 1.5rem;
+
+  border-top: 1px solid var(--gray-400);
+  border-radius: 8px;
+
+  color: var(--gray-300);
+  line-height: 1.4;
+}
+
+.main strong {
+  margin-top: 1rem;
 }

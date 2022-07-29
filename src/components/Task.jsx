@@ -1,19 +1,63 @@
-import { Trash } from 'phosphor-react'
+import { PlusCircle } from 'phosphor-react'
+import ClipBoard from './../assets/Clipboard.svg'
+
+import {v4 as uuidV4} from 'uuid'
+
+import { ToDo } from './ToDo'
 
 import styles from './Task.module.css'
+import { useState } from 'react'
 
-export function Task ({id, title, isComplete}) {
+export function Task () {
+
+  const [task, setTask] = useState([])
+
+  const [newToDoText, setNewToDoText] = useState("")
+
+  function handleNewTask() {
+    event.preventDefault()
+
+    setTask([...task, newToDoText])
+    setNewToDoText('')
+
+    console.log(task)
+  }
+
+  function handleNewToDoText() {
+    setNewToDoText(event.target.value)
+  }
 
   return (
-    <div className={styles.toDo}>
-      <div className={styles.contentTask}>
-        <input type='checkbox' defaultChecked={isComplete}/>
-        <p>{title}</p>
-      </div>
+    <div className={styles.content}>
+        <form onSubmit={handleNewTask} className={styles.form}>
+          <input type="text" name="tasks" value={newToDoText} onChange={handleNewToDoText} placeholder='Adicione uma nova tarefa'/>
 
-      <button>
-        <Trash size={24}/>
-      </button>
+          <button>
+            Criar
+            <PlusCircle size={16} weight='bold'/>
+          </button>
+        </form>
+
+        <div className={styles.toDoList}>
+          <div className={styles.headerList}>
+            <strong>Tarefas criadas <span>{task.length}</span></strong>
+            <strong>Concluídas <span>{`0 de ${task.length}`}</span></strong>
+          </div>
+            {task == "" ? (
+              <div className={styles.main}>
+                <img src={ClipBoard} alt="" />
+                <strong>Você ainda não tem tarefas cadastradas</strong>
+                <p>Crie tarefas e organize seus itens a fazer</p>
+              </div>
+            ): task.map(t => {
+              return (
+                <ToDo
+                  key={uuidV4()}
+                  title={t}
+                />
+              )
+            })}
+        </div>
     </div>
   )
 }
