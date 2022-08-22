@@ -14,17 +14,25 @@ export function Task () {
 
   const [newToDoText, setNewToDoText] = useState("")
 
+  const [isComplete, setIsComplete] = useState(false)
+
   function handleNewTask() {
     event.preventDefault()
 
     setTask([...task, newToDoText])
     setNewToDoText('')
-
-    console.log(task)
   }
 
   function handleNewToDoText() {
     setNewToDoText(event.target.value)
+  }
+
+  function deleteTask(taskToDelete){
+    const tasksWithoutDeleteOne = task.filter(task => {
+      return task !== taskToDelete
+    })
+
+    setTask(tasksWithoutDeleteOne)
   }
 
   return (
@@ -54,6 +62,7 @@ export function Task () {
                 <ToDo
                   key={uuidV4()}
                   title={t}
+                  onDeleteTask={deleteTask}
                 />
               )
             })}
