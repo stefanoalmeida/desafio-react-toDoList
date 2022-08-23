@@ -14,12 +14,18 @@ export function Task () {
 
   const [newToDoText, setNewToDoText] = useState("")
 
-  const [isComplete, setIsComplete] = useState(false)
-
   function handleNewTask() {
     event.preventDefault()
 
-    setTask([...task, newToDoText])
+    if (!newToDoText) return
+
+    const newTask = {
+      id: uuidV4(),
+      title: newToDoText,
+      isComplete: false
+    }
+
+    setTask([...task, newTask])
     setNewToDoText('')
   }
 
@@ -27,18 +33,33 @@ export function Task () {
     setNewToDoText(event.target.value)
   }
 
-  function deleteTask(taskToDelete){
-    const tasksWithoutDeleteOne = task.filter(task => {
-      return task !== taskToDelete
-    })
+  function handleToggleTaskCompletion(id) {
+    const newTasks = task.map(t => t.id === id ? {
+      ...t,
+      isComplete: !t.isComplete
+    }: t)
+
+    setTask(newTasks)
+  }
+
+  function deleteTask(id){
+    const tasksWithoutDeleteOne = task.filter(task => task.id !== id)
 
     setTask(tasksWithoutDeleteOne)
   }
 
+  const numberOfTasksComplete = task.filter (t => t.isComplete === true).length
+
   return (
     <div className={styles.content}>
         <form onSubmit={handleNewTask} className={styles.form}>
-          <input type="text" name="tasks" value={newToDoText} onChange={handleNewToDoText} placeholder='Adicione uma nova tarefa'/>
+          <input 
+            type="text" 
+            name="tasks" 
+            value={newToDoText} 
+            onChange={handleNewToDoText} 
+            placeholder='Adicione uma nova tarefa'
+          />
 
           <button>
             Criar
@@ -49,7 +70,7 @@ export function Task () {
         <div className={styles.toDoList}>
           <div className={styles.headerList}>
             <strong>Tarefas criadas <span>{task.length}</span></strong>
-            <strong>Concluídas <span>{`0 de ${task.length}`}</span></strong>
+            <strong>Concluídas <span>{`${numberOfTasksComplete} de ${task.length}`}</span></strong>
           </div>
             {task == "" ? (
               <div className={styles.main}>
@@ -61,7 +82,10 @@ export function Task () {
               return (
                 <ToDo
                   key={uuidV4()}
-                  title={t}
+                  id={t.id}
+                  title={t.title}
+                  isComplete={t.isComplete}
+                  onComplete={handleToggleTaskCompletion}
                   onDeleteTask={deleteTask}
                 />
               )

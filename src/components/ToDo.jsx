@@ -1,25 +1,22 @@
 import { Trash } from 'phosphor-react'
-import { useState } from 'react'
 
 import styles from './ToDo.module.css'
 
-export function ToDo ({title, onDeleteTask}) {
-
-  const [isChecked, setIsChecked] = useState(false)
+export function ToDo ({id, title, isComplete, onComplete, onDeleteTask}) {
 
   function handleDeleteTask(){
-    onDeleteTask(title)
+    onDeleteTask(id)
   }
 
   function handleIsComplete() {
-    setIsChecked(state => !state)
+    onComplete(id)
   }
 
   return (
     <div className={styles.toDo}>
       <div className={styles.contentTask}>
-        <input type='checkbox' onClick={handleIsComplete} defaultChecked={isChecked} />
-        <p className={isChecked ? `${styles.checked}` : ''}>{title}</p>
+        <input type='checkbox' onClick={handleIsComplete} defaultChecked={isComplete} />
+        <p className={isComplete ? `${styles.checked}` : ''}>{title}</p>
       </div>
 
       <button>
